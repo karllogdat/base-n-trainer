@@ -1,10 +1,11 @@
 #include <math.h>
+#include <stdio.h>
 #include "binary.h"
+#include "random.h"
 
 // Black magic I don't understand
 long long ConvertInttoBin(int integer)
 {
-    // Storage for final binary
     long long binary = 0;
 
     int rem;
@@ -38,3 +39,62 @@ int ConvertBintoInt(long long binary)
     return decimal;
 }
 
+// Takes difficulty(int) as a parameter
+// Difficulty:
+//  1 - 10 digits
+//  2 - 100 digits
+//  3 - 1000 digits
+//  ...
+void BinToIntQuestion(int difficulty)
+{
+    int mainInt = randRanged(
+                    pow(10, difficulty - 1) + 1, 
+                    pow(10, difficulty) - 1
+                );
+
+    int answer;
+
+    printf(
+        "Convert %lld to integer: ",
+        ConvertInttoBin(mainInt)
+    );
+
+    scanf("%d", &answer);
+
+    if (answer == mainInt) {
+        printf("Correct!\n");
+    } else if (answer != mainInt) {
+        printf("Incorrect.\n");
+    } else {
+        printf("Invalid answer.\n");
+    }
+}
+
+void IntToBinQuestion(int difficulty)
+{
+    int mainInt = randRanged(
+                    pow(10, difficulty - 1) + 1, 
+                    pow(10, difficulty) - 1
+                );
+
+    int answer;
+
+    printf(
+        "Convert %d to binary: ",
+        mainInt
+    );
+
+    scanf("%lld", &answer);
+
+    // DON'T REMOVE [code doesn't work without using this method]
+    long long correctAnswer = ConvertInttoBin(mainInt);
+
+    if (answer == correctAnswer) {
+        printf("Correct!\n");
+    } else if (answer != correctAnswer) {
+        printf("Incorrect.\n");
+        printf("Correct: %lld", correctAnswer);
+    } else {
+        printf("Invalid answer.");
+    }
+}

@@ -93,7 +93,6 @@ void IntToBinQuestion(int difficulty)
         printf("Correct!\n");
     } else if (answer != correctAnswer) {
         printf("Incorrect.\n");
-        printf("Correct: %lld", correctAnswer);
     } else {
         printf("Invalid answer.");
     }
